@@ -5,7 +5,7 @@ const Employee = ({ employee }) => {
         <div>
             <div className="ui segment">
                 {employee ?
-                    employee.data.map(employee => {
+                    employee.map(employee => {
                         return (<div className="ui segment" key={employee.id}>
                             <div className="ui unstackable items">
                                 <div className="item">
@@ -20,7 +20,7 @@ const Employee = ({ employee }) => {
                                         <div className="description">
                                             <p>Active: {employee.isActive ? 'Yes' : 'No'}</p>
                                             <p>Senior: {employee.isSenior ? 'Yes' : 'No'}</p>
-                                            <p>Salary: {employee.salary}</p>
+                                            <p>Salary: {employee.salary}$</p>
                                             <p>Department: {employee.Department}</p>
                                             <p>Car: {employee.hasCar ? 'Yes' : 'No'}</p>
                                         </div>

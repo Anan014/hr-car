@@ -11,7 +11,7 @@ const App = () => {
 
     const [car, setCar] = useState(null);
     const [employee, setEmployee] = useState(null);
-
+    console.log(employee);
     useEffect(() => {
         fetchEmployeeData();
         fetchCarData();
@@ -19,12 +19,25 @@ const App = () => {
 
     const fetchEmployeeData = async () => {
         const employeeData = await axios.get('https://617bca6bd842cf001711c0b5.mockapi.io/Employee');
-        setEmployee(employeeData);
+        setEmployee(employeeData.data);
     }
 
     const fetchCarData = async () => {
         const carData = await axios.get('https://617bca6bd842cf001711c0b5.mockapi.io/Car');
-        setCar(carData);
+        setCar(carData.data);
+    }
+
+    const prophandler = async(e) => {
+        console.log('-', e.data);
+        setEmployee(employee.map(emp=>{return emp.id===e.data.id?e.data:emp}))
+        
+
+    }
+    const prophandler2 = async(e) => {
+        console.log('-', e.data);
+        setCar(car.map(car=>{return car.id===e.data.id?e.data:car}))
+        
+
     }
 
     return (
@@ -39,13 +52,13 @@ const App = () => {
                         <Route path="/" exact component={Home} />
 
                         <Route path="/cars" exact component={Cars} >
-                        <Cars car={car} /></Route>
+                            <Cars car={car} /></Route>
 
                         <Route path="/employee" exact component={Employee} >
-                        <Employee employee={employee} /></Route>
+                            <Employee employee={employee} /></Route>
 
                         <Route path="/match" exact component={Match} >
-                            <Match employee={employee} car={car} />
+                            <Match employee={employee} car={car} prophandler={(e) => {prophandler(e)}} prophandler2={(e) => {prophandler2(e)}}/>
                         </Route>
                     </div>
                 </BrowserRouter>

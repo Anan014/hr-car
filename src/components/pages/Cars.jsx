@@ -5,7 +5,7 @@ const Cars = ({ car }) => {
         <div>
             <div className="ui segment">
                 {car ?
-                    car.data.map(car => {
+                    car.map(car => {
                         return (<div className="ui segment" key={car.id}>
 
                             <div className="ui unstackable items">
@@ -22,7 +22,7 @@ const Cars = ({ car }) => {
                                             <p>Pay from salary: {car.isGold ? 'Yes' : 'No'}</p>
                                             <p>Available: {car.isAvailable ? 'Yes' : 'No'}</p>
                                             <p>For Seniors: {car.isSenior ? 'Yes' : 'No'}</p>
-                                            <p>Rental Payment: {car.rentalPayment}</p>
+                                            <p>Rental Payment: {car.rentalPayment}$</p>
                                         </div>
                                         <div className="extra">
                                             <p>Car ID: {car.id}</p>
